@@ -1,0 +1,33 @@
+{
+  "isucon_pem": "isucon12-allinone.pem",
+  "isucon_user": "isucon",
+  "admin_user": "ubuntu",
+  "host": "ec2-3-112-242-140.ap-northeast-1.compute.amazonaws.com",
+
+  "file_mapper": {
+    "webapp": {
+      "isSecure": false,
+      "path": {
+        "local": "./webapp",
+        "remote": "/home/isucon/"
+      }
+    },
+    "nginxConf": {
+      "isSecure": true,
+      "path": {
+        "local": "./conf/nginx.conf",
+        "remote": "/etc/nginx/nginx.conf"
+      }
+    },
+    "mysqlConf": {
+      "isSecure": true,
+      "path": {
+        "local": "./conf/mysqld.cnf",
+        "remote": "/etc/mysql/mysql.conf.d/mysqld.cnf"
+      }
+    },
+    "sql": "sql",
+    "bench": "bench",
+    "tools": "tools"
+  }
+}

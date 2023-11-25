@@ -1,0 +1,60 @@
+{
+  "isucon_pem": "~/.ssh/id_rsa",
+  "isucon_user": "isucon",
+  "admin_user": "ubuntu",
+  "host": "ec2-52-68-99-152.ap-northeast-1.compute.amazonaws.com",
+
+  "file_mapper": {
+    "webapp": {
+      "isSecure": false,
+      "path": {
+        "local": "./server3/go",
+        "remote": "/home/isucon/webapp/go"
+      }
+    },
+    "sql": {
+      "isSecure": false,
+      "path": {
+        "local": "./server3/sql",
+        "remote": "/home/isucon/webapp/sql"
+      }
+    },
+    "nginxConf": {
+      "isSecure": false,
+      "path": {
+        "local": "./server3/conf/nginx.conf",
+        "remote": "/etc/nginx/nginx.conf"
+      }
+    },
+    "mysqlConf": {
+      "isSecure": false,
+      "path": {
+        "local": "./server3/conf/mysqld.cnf",
+        "remote": "/etc/mysql/mysql.conf.d/mysqld.cnf"
+      }
+    },
+    "slowquery": {
+      "isSecure": true,
+      "path": {
+        "local": "./slowquery/slowquery.digest",
+        "remote": "/tmp/slow_query_20231019085706.digest"
+      }
+    },
+    "userPresentsSchema": {
+      "isSecure": false,
+      "path": {
+        "local": "./sql/3_schema_exclude_user_presents.sql",
+        "remote": "/home/isucon/webapp/sql/3_schema_exclude_user_presents.sql"
+      }
+    },
+    "env": {
+      "isSecure": false,
+      "path": {
+        "local": "./server3/env.sh",
+        "remote": "/home/isucon/env.sh"
+      }
+    },
+    "bench": "bench",
+    "tools": "tools"
+  }
+}

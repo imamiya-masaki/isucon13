@@ -109,3 +109,5 @@ CREATE TABLE `reactions` (
 -- SELECT * FROM livestream_tags WHERE livestream_id = 7531; が一位だったため
 -- memo: もう少し工夫箇所ありそう
 CREATE INDEX livestream_tags_livestream_id on livestream_tags(livestream_id);
+-- SELECT image FROM icons WHERE user_id = 1049\G
+CREATE INDEX icons_userid on icons(user_id);

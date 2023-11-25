@@ -42,6 +42,11 @@ type LivestreamModel struct {
 	EndAt        int64  `db:"end_at" json:"end_at"`
 }
 
+type LiveCommentTotal struct {
+	totalComment int64 `db:"total_count"`
+	totalTip     int64 `db:"total_tip"`
+}
+
 type Livestream struct {
 	ID           int64  `json:"id"`
 	Owner        User   `json:"owner"`

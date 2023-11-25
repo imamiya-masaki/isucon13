@@ -2,35 +2,35 @@
   "isucon_pem": "~/.ssh/id_rsa",
   "isucon_user": "isucon",
   "admin_user": "ubuntu",
-  "host": "ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com",
+  "host": "ec2-52-68-99-152.ap-northeast-1.compute.amazonaws.com",
 
   "file_mapper": {
     "webapp": {
       "isSecure": false,
       "path": {
-        "local": "./server1/",
+        "local": "./server2/go",
         "remote": "/home/isucon/webapp/go"
       }
     },
     "sql": {
       "isSecure": false,
       "path": {
-        "local": "./server1/",
+        "local": "./server2/sql",
         "remote": "/home/isucon/webapp/sql"
       }
     },
     "nginxConf": {
-      "isSecure": false,
+      "isSecure": true,
       "path": {
-        "local": "./server1/conf/nginx.conf",
-        "remote": "/home/isucon/nginx/nginx.conf"
+        "local": "./server2/conf/nginx.conf",
+        "remote": "/etc/nginx/nginx.conf"
       }
     },
     "mysqlConf": {
-      "isSecure": false,
+      "isSecure": true,
       "path": {
-        "local": "./server1/conf/mysqld.cnf",
-        "remote": "/home/isucon/mysql/mysqld.cnf"
+        "local": "./server2/conf/mysqld.cnf",
+        "remote": "/etc/mysql/mysql.conf.d/mysqld.cnf"
       }
     },
     "slowquery": {

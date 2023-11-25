@@ -104,3 +104,10 @@ CREATE TABLE `reactions` (
   `emoji_name` VARCHAR(255) NOT NULL,
   `created_at` BIGINT NOT NULL
 ) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
+-- index
+-- SELECT * FROM livestream_tags WHERE livestream_id = 7531; が一位だったため
+-- memo: もう少し工夫箇所ありそう
+CREATE INDEX livestream_tags_livestream_id on livestream_tags(livestream_id);
+-- SELECT image FROM icons WHERE user_id = 1049\G
+CREATE INDEX icons_userid on icons(user_id);

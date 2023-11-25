@@ -23,7 +23,7 @@
       "isSecure": false,
       "path": {
         "local": "./server1/sql/initdb.d",
-        "remote": "/home/isucon/webapp/sql/initdb.d"
+        "remote": "/home/isucon/webapp/sql"
       }
     },
     "nginxConf": {

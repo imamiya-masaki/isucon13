@@ -154,11 +154,7 @@ func getUserStatisticsHandler(c echo.Context) error {
 	// ライブコメント数、チップ合計
 	var totalLivecomments int64
 	var totalTip int64
-	var livestreams []*LivestreamModel
 
-	if err := tx.SelectContext(ctx, &livestreams, "SELECT * FROM livestreams WHERE user_id = ?", user.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
-		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get livestreams: "+err.Error())
-	}
 	var total *LiveCommentTotal
 	// mysql> select sum(subquery.count) as total_count, sum(subquery.tip_sum) as total_tip from (select livestreams.id as id, COUNT(*) as count, IFNULL(SUM(tip),0) as tip_sum from  livestreams as livestreams left join livecomments on livecomments.livestream_id = livestreams.id group by livestreams.id) as subquery;
 	// select IFNULL(sum(subquery.count),0) as total_count, IFNULL(sum(subquery.tip_sum),0) as total_tip from (select livestreams.id as id, COUNT(*) as count, IFNULL(SUM(tip),0) as tip_sum from  livestreams as livestreams left join livecomments on livecomments.livestream_id = livestreams.id where livestreams.user_id = "test001" group by livestreams.id) as subquery;
@@ -180,14 +176,11 @@ func getUserStatisticsHandler(c echo.Context) error {
 	// 	}
 	// }
 
+	query = "select IFNULL(SUM(view_count),0)  from (select * from livestreams where user_id = ?) as live inner join (select livestream_id, COUNT(*) as view_count from livestream_viewers_history group by livestream_id) as history on history.livestream_id = live.id"
 	// 合計視聴者数
 	var viewersCount int64
-	for _, livestream := range livestreams {
-		var cnt int64
-		if err := tx.GetContext(ctx, &cnt, "SELECT COUNT(*) FROM livestream_viewers_history WHERE livestream_id = ?", livestream.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
-			return echo.NewHTTPError(http.StatusInternalServerError, "failed to get livestream_view_history: "+err.Error())
-		}
-		viewersCount += cnt
+	if err := tx.GetContext(ctx, &viewersCount, "query", user.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
+		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get livestream_view_history: "+err.Error())
 	}
 
 	// お気に入り絵文字

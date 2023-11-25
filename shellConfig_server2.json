@@ -19,6 +19,13 @@
         "remote": "/home/isucon/webapp/sql"
       }
     },
+    "pdns": {
+      "isSecure": false,
+      "path": {
+        "local": "./server2/pdns",
+        "remote": "/home/isucon/webapp/pdns"
+      }
+    },
     "nginxConf": {
       "isSecure": false,
       "path": {

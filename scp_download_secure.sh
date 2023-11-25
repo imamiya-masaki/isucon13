@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# JSONファイルのパス
-json_file="./shellConfig.json"
-
 # 引数からターゲットのキーを取得
 target=$1
+# 引数からJSONファイルのパスを取得
+json_file=$2
 
-# 引数がない場合はエラーメッセージを表示して終了
+# 引数がない場合(2つとも）はエラーメッセージを表示して終了
 if [ -z "$json_file" ]; then
     echo "Usage: $0 <json_file>"
     exit 1

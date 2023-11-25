@@ -8,14 +8,14 @@
     "webapp": {
       "isSecure": false,
       "path": {
-        "local": "./server1/",
+        "local": "./server1/go",
         "remote": "/home/isucon/webapp/go"
       }
     },
     "sql": {
       "isSecure": false,
       "path": {
-        "local": "./server1/",
+        "local": "./server1/sql",
         "remote": "/home/isucon/webapp/sql"
       }
     },

@@ -23,14 +23,14 @@
       "isSecure": true,
       "path": {
         "local": "./server1/conf/nginx.conf",
-        "remote": "/etc/nginx/nginx.conf"
+        "remote": "/home/isucon/nginx/nginx.conf"
       }
     },
     "mysqlConf": {
       "isSecure": true,
       "path": {
         "local": "./server1/conf/mysqld.cnf",
-        "remote": "/etc/mysql/mysql.conf.d/mysqld.cnf"
+        "remote": "/home/isucon/mysql/mysqld.cnf"
       }
     },
     "slowquery": {

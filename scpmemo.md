@@ -16,9 +16,9 @@ scp -ri "~/.ssh/id_rsa" isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaw
 # upload server1
 ## mysql
 ```
-sudo scp -i "~/.ssh/id_rsa" -r ./server1/conf/mysqld.cnf isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/etc/mysql/mysql.conf.d/mysqld.cnf
+scp -i "~/.ssh/id_rsa" -r ./server1/conf/mysqld.cnf isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 ## nginx
 ```
-sudo scp -i "~/.ssh/id_rsa" -r ./server1/conf/nginx.conf isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/etc/nginx/nginx.conf
+scp -i "~/.ssh/id_rsa" -r ./server1/conf/nginx.conf isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/etc/nginx/nginx.conf
 ```

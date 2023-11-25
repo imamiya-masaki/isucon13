@@ -47,6 +47,13 @@
         "remote": "/home/isucon/webapp/sql/3_schema_exclude_user_presents.sql"
       }
     },
+    "env": {
+      "isSecure": false,
+      "path": {
+        "local": "./server2/env.sh",
+        "remote": "/home/isucon/env.sh"
+      }
+    },
     "bench": "bench",
     "tools": "tools"
   }

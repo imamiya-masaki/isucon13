@@ -2,14 +2,14 @@
   "isucon_pem": "isucon12-allinone.pem",
   "isucon_user": "isucon",
   "admin_user": "ubuntu",
-  "host": "ec2-3-112-242-140.ap-northeast-1.compute.amazonaws.com",
+  "host": "ec2-43-207-224-160.ap-northeast-1.compute.amazonaws.com",
 
   "file_mapper": {
     "webapp": {
       "isSecure": false,
       "path": {
-        "local": "./webapp",
-        "remote": "/home/isucon/"
+        "local": "./webapp/",
+        "remote": "/home/isucon/webapp/go"
       }
     },
     "nginxConf": {
@@ -26,7 +26,20 @@
         "remote": "/etc/mysql/mysql.conf.d/mysqld.cnf"
       }
     },
-    "sql": "sql",
+    "slowquery": {
+      "isSecure": true,
+      "path": {
+        "local": "./slowquery/slowquery.digest",
+        "remote": "/tmp/slow_query_20231019085706.digest"
+      }
+    },
+    "userPresentsSchema": {
+      "isSecure": false,
+      "path": {
+        "local": "./sql/3_schema_exclude_user_presents.sql",
+        "remote": "/home/isucon/webapp/sql/3_schema_exclude_user_presents.sql"
+      }
+    },
     "bench": "bench",
     "tools": "tools"
   }

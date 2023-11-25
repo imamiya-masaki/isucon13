@@ -38,42 +38,35 @@ if [ "$target_is_secure" == null ]; then
     exit 1
 fi
 
-# target_is_secureがtrueの場合はscpコマンドを実行, falseの場合はsshコマンドを実行
+# scp_upload_secure.shと逆の処理を行う
 if [ "$target_is_secure" = true ]; then
     echo "sshコマンドを実行します"
     # targetの先頭の./を削除したtarget_dirを作成
     target_dir=$(echo "$target_local_path" | sed -e 's/^\.\///g')
     echo target_dir: $target_dir
-    echo "ssh -i "$isucon_pem" "$admin_user@$host" "mkdir -p $(dirname /home/$admin_user/$target_dir)""
-    echo "scp -i "$isucon_pem" -r "$target_local_path" "$admin_user@$host:/home/$admin_user/$target_dir""
-    echo "ssh -i "$isucon_pem" "$admin_user@$host" "sudo mv /home/$admin_user/$target_dir $target_remote_path""
-    # 送り先のディレクトリが存在しない場合は新しく作成
-    ssh -i "$isucon_pem" "$admin_user@$host" "mkdir -p $(dirname /home/$admin_user/$target_dir)"
-
-    # 転送先のディレクトリに転送
-    scp -i "$isucon_pem" -r "$target_local_path" "$admin_user@$host:/home/$admin_user/$target_dir"
-    ssh -i "$isucon_pem" "$admin_user@$host" "sudo mv /home/$admin_user/$target_dir $target_remote_path"
+    echo "scp -ri $isucon_pem $admin_user@$host:$target_remote_path $target_local_path"
+    scp -ri $isucon_pem $admin_user@$host:$target_remote_path $target_local_path
 
     # 直前のコマンドの終了ステータスを確認
-    # if [ $? -eq 0 ]; then
-    #     echo "成功"
-    #     git add -A
-    #     git commit -m "uploaded secure $target"
-    # else
-    #     echo "失敗"
-    # fi
+    if [ $? -eq 0 ]; then
+        echo "成功"
+        git add -A
+        git commit -m "downloaded secure $target"
+    else
+        echo "失敗"
+    fi
 
 else
     echo "scpコマンドを実行します"
-    echo "scp -i $isucon_pem -r $target_local_path $isucon_user@$host:$target_remote_path"
-    scp -i "$isucon_pem" -r "$target_local_path" "$isucon_user@$host:$target_remote_path"
+    echo " scp -ri $isucon_pem $isucon_user@$host:$target_remote_path $target_local_path"
+    scp -ri $isucon_pem $isucon_user@$host:$target_remote_path $target_local_path
 
-        # 直前のコマンドの終了ステータスを確認
-    # if [ $? -eq 0 ]; then
-    #     echo "成功"
-    #     git add -A
-    #     git commit -m "uploaded $target"
-    # else
-    #     echo "失敗"
-    # fi
+    # 直前のコマンドの終了ステータスを確認
+    if [ $? -eq 0 ]; then
+        echo "成功"
+        git add -A
+        git commit -m "downloaded $target"
+    else
+        echo "失敗"
+    fi
 fi

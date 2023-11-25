@@ -77,20 +77,20 @@ func getUserStatisticsHandler(c echo.Context) error {
 	}
 	defer tx.Rollback()
 
-	var user UserModel
-	if err := tx.GetContext(ctx, &user, "SELECT * FROM users WHERE name = ?", username); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return echo.NewHTTPError(http.StatusBadRequest, "not found user that has the given username")
-		} else {
-			return echo.NewHTTPError(http.StatusInternalServerError, "failed to get user: "+err.Error())
-		}
-	}
+	// var user UserModel
+	// if err := tx.GetContext(ctx, &user, "SELECT * FROM users WHERE name = ?", username); err != nil {
+	// 	if errors.Is(err, sql.ErrNoRows) {
+	// 		return echo.NewHTTPError(http.StatusBadRequest, "not found user that has the given username")
+	// 	} else {
+	// 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get user: "+err.Error())
+	// 	}
+	// }
 
 	// ランク算出
-	var users []*UserModel
-	if err := tx.SelectContext(ctx, &users, "SELECT * FROM users"); err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get users: "+err.Error())
-	}
+	// var users []*UserModel
+	// if err := tx.SelectContext(ctx, &users, "SELECT * FROM users"); err != nil {
+	// 	return echo.NewHTTPError(http.StatusInternalServerError, "failed to get users: "+err.Error())
+	// }
 
 	var ranking []*UserRankingEntry
 	// select r.id as Username, (r.count + t.count) as Score from (SELECT u.id, COUNT(*) as count FROM users u INNER JOIN livestreams l ON l.user_id = u.id INNER JOIN reactions r ON r.livestream_id = l.id group by u.id) as r inner join (SELECT u.id, IFNULL(SUM(l2.tip), 0) as count FROM users u INNER JOIN livestreams l ON l.user_id = u.id INNER JOIN livecomments l2 ON l2.livestream_id = l.id group by u.id) as t on r.id = t.id order by Score, Username;

@@ -9,7 +9,7 @@
       "isSecure": false,
       "path": {
         "local": "./server1/go",
-        "remote": "/home/isucon/webapp/go"
+        "remote": "/home/isucon/webapp"
       }
     },
     "sql": {

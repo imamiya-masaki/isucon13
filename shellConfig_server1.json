@@ -16,7 +16,7 @@
       "isSecure": false,
       "path": {
         "local": "./server1/sql",
-        "remote": "/home/isucon/webapp/sql"
+        "remote": "/home/isucon/webapp"
       }
     },
     "sqlinitdb": {

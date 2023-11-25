@@ -7,6 +7,12 @@ scp -ri "~/.ssh/id_rsa" isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaw
 ```
 scp -ri "~/.ssh/id_rsa" isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/etc/nginx/nginx.conf ./server1/conf/cd 
 ```
+## slowquerydigest
+```
+```
+scp -ri "~/.ssh/id_rsa" isucon@ec2-3-112-135-213.ap-northeast-1.compute.amazonaws.com:/tmp/slow_query_20231025021852.digest ./server1/digest
+```
+```
 # upload server1
 ## mysql
 ```
